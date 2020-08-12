@@ -1,0 +1,28 @@
+Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+
+For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+
+SOLUTION:
+
+		int n;
+		Scanner in = new Scanner(System.in);
+		System.out.print("Type number n");
+		n=in.nextInt();
+		int[] numbers = new int[n];
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Input number");
+			numbers[i]=in.nextInt();
+		}
+		System.out.println("Input number k");
+		int k =in.nextInt();
+		for(int i=0;i<n-1;i++)
+		{
+			for(int j=1;j<n;j++)
+			{
+				if(numbers[i]+numbers[j]==k)
+				{
+					System.out.println("("+numbers[i]+" , "+numbers[j]+")");
+				}
+			}
+		}
