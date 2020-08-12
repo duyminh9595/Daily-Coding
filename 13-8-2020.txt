@@ -1,0 +1,40 @@
+Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.
+
+For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].
+
+
+Solution:
+
+		int n;
+		Scanner in = new Scanner(System.in);
+		System.out.println("Nhap number of array");
+		n=in.nextInt();
+		int[] inputArray = new int[n];
+		int[] outputArray = new int[n];
+		for(int i=0;i<n;i++)
+		{
+			System.out.println("Input Elements");
+			inputArray[i]=in.nextInt();
+		}
+		for(int i=0;i<n;i++)
+		{
+			int result=1;
+			for(int j=0;j<n;j++)
+			{
+				if(j!=i)
+				{
+					result=result*inputArray[j];
+				}
+			}
+			outputArray[i]=result;
+		}
+		System.out.println("New Array Output");
+		System.out.print("(");
+		for(int i=0;i<n;i++)
+		{
+			if(i==n-1)
+				System.out.print(outputArray[i]);
+			else
+				System.out.print(outputArray[i]+", ");
+		}
+		System.out.print(")");
