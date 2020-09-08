@@ -1,0 +1,93 @@
+For example, given the list of words ["the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"] and k = 16, you should return the following:
+
+["the  quick brown", # 1 extra space on the left
+"fox  jumps  over", # 2 extra spaces distributed evenly
+"the   lazy   dog"] # 4 extra spaces distributed evenly
+
+***SOLUTION FOR JAVA
+
+	static public void xuatRa(String s,int k)
+	{
+		List<String>listS = Arrays.asList(s.split(" "));
+		int count=listS.size()-1;
+		int i=0;
+		int temp=count+k;
+		while(temp>0)
+		{
+			String data="";
+			data=listS.get(i);
+			data+=" ";
+			listS.set(i, data);
+			++i;
+			if(i==listS.size()-1)
+				i=0;
+			--temp;
+		}
+		for(String data:listS)
+		{
+			System.out.print(data);			
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 String[]s={"the", "quick", "brown", "fox", "jumps", "over", "the", "lazy", "dog"};
+		 int k=16;
+		 int count=s[0].length();
+		 String output=s[0];
+		 int start=0;
+		 int i=0;
+		 int a=0;
+		 int b=0;
+		 int[]arrS=new int[s.length];
+		 for(int j=0;j<s.length;j++)
+		 {
+			arrS[j]=s[j].length();
+		 }
+		 int j=1;
+		 while(j<s.length)
+		{
+			if(arrS[j]+count<=k)
+			{
+				if(arrS[j]+count+1<=k)
+				{
+					if(count!=0)
+					{
+						output+=" ";
+						output+=s[j];
+						count=count+s[j].length()+1;
+					}
+					else
+					{
+						output+=s[j];
+						count=count+s[j].length();
+					}
+				}
+				else
+				{
+					xuatRa(output, k-count);
+					System.out.println();
+					output="";
+					count=0;
+					--j;
+					
+				}
+			}
+			else
+			{
+				xuatRa(output, k-count);
+
+				System.out.println();
+				output="";
+				count=0;
+				--j;
+			}
+			if(j==s.length-1)
+			{
+				xuatRa(output, k-count);
+				output="";
+				count=0;
+				break;
+			}
+			++j;
+		}
+	}
