@@ -1,0 +1,44 @@
+Run-length encoding is a fast and simple method of encoding strings. The basic idea is to represent repeated successive characters as a single count and character. 
+For example, the string "AAAABBBCCDAA" would be encoded as "4A3B2C1D2A".
+
+Implement run-length encoding and decoding. You can assume the string to be encoded have no digits and consists solely of alphabetic characters. 
+You can assume the string to be decoded is valid.
+ Problem  [Easy]
+ Solution by Java:
+    int k=0;
+		String s="AAAABBBCCDAA";
+		String out="";
+		boolean check=true;
+		int i=0;
+		while(i<s.length())
+		{
+			for(int j=i;j<s.length();j++)
+			{
+				if(s.charAt(i)==s.charAt(j))
+					++k;
+				else
+				{
+					check=false;
+					i=j-1;
+					break;
+					
+				}
+				if(s.length()-1==j)
+				{
+					check=false;
+					i=j;
+					break;
+					
+				}
+			}
+				if(check==false)
+				{
+					out=out+String.valueOf(k)+String.valueOf(s.charAt(i));
+					check=true;
+					k=0;
+				}
+			++i;
+		}
+		System.out.print(out);
+ 
+
