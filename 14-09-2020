@@ -1,0 +1,69 @@
+Given a string, find the palindrome that can be made by inserting the fewest number of characters as possible anywhere in the word. 
+If there is more than one palindrome of minimum length that can be made, return the lexicographically earliest one (the first one alphabetically).
+
+For example, given the string "race", you should return "ecarace", since we can add three letters to it (which is the smallest amount to make a palindrome). 
+There are seven other palindromes that can be made from "race" by adding three letters, but "ecarace" comes first alphabetically.
+
+As another example, given the string "google", you should return "elgoogle".
+
+Solution:
+String s= "google";
+		String sString1;
+		String sString2 ;
+		boolean check;
+		for(int i=s.length()/2;i>=0;i--)
+		{
+			sString1 = "";
+			sString2 = "";
+			check=true;
+			for(int j=i-1;j>=0;j--)
+			{
+				sString1+=(String.valueOf(s.charAt(j)));
+			}
+			for(int k=i;k<=s.length()-1;k++)
+			{
+				sString2+=(String.valueOf(s.charAt(k)));
+			}
+			
+			for(int a=0;a<=sString1.length()-1;a++)
+			{
+				if(sString1.charAt(a)!=sString2.charAt(a))
+				{
+					check=false;
+					break;
+				}
+			}
+			if(sString1.equals(""))
+			{
+				String data = "";
+				for(int j=s.length()-1;j>=1;j--)
+				{
+					data+=String.valueOf(s.charAt(j));
+				}
+				s=data+s;
+				System.out.print(s);
+				break;
+			}
+			if(check==false)
+			{
+				continue;
+			}
+			else
+			{
+				String data1 = "";
+				for(int b=sString2.length()-1;b>=sString2.length()-i;b--)
+				{
+					data1+=String.valueOf(sString2.charAt(b));
+				}
+				String daochuoiString1="";
+				for(int q=sString1.length()-1;q>=0;q--)
+				{
+					daochuoiString1+=String.valueOf(sString1.charAt(q));
+				}
+				System.out.print(data1+daochuoiString1+sString2);
+				break;
+			}
+			
+		}
+	}
+
