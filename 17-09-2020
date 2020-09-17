@@ -1,0 +1,57 @@
+The power set of a set is the set of all its subsets. Write a function that, given a set, generates its power set.
+
+For example, given the set {1, 2, 3}, it should return {{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}}.
+
+
+
+
+Solution:
+int[]arr= {1,2,3,4};
+		List<String>listOutput=new ArrayList<String>();
+		listOutput.add("{ }");
+		for(int i=1;i<arr.length;i++)
+		{
+			String s="";
+			int l;
+			
+			for(int j=0;j<arr.length;j++)
+			{
+				if(i>1)
+				{
+					for(int k=j+1;k<arr.length;k++)
+					{
+						
+							s+=String.valueOf(arr[j]);
+							l=1;
+							{
+								for(int u=k;u<arr.length;u++)
+								{
+										s=s+","+String.valueOf(arr[u]);
+										++l;
+										if(l==i)
+											break;
+								}
+								if(s.length()==i+(i-1))
+								listOutput.add("{"+s+"}");
+								s="";
+								l=0;
+							}
+												
+					}
+				}
+				else
+				{
+					listOutput.add("{"+String.valueOf(arr[j])+"}");
+				
+			}
+		}}
+		String temp="";
+		for(int q=0;q<arr.length;q++)
+		{
+			if(q==arr.length-1)
+				temp+=String.valueOf(arr[q]);
+			else
+				temp=temp+String.valueOf(arr[q])+",";
+		}
+		listOutput.add("{"+temp+"}");
+		System.out.print(listOutput);
