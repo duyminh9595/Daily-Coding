@@ -1,0 +1,63 @@
+Given the root to a binary search tree, find the second largest node in the tree.
+
+Solution:
+
+
+public class Node {
+	int value;
+	Node left, right;
+
+	public Node(int item) {
+		value = item;
+		left = right = null;
+	}
+}
+
+
+public class BinaryTree {
+	static Node root;
+
+	// Constructors
+	BinaryTree(int key) {
+		root = new Node(key);
+	}
+
+	BinaryTree() {
+		root = null;
+	}
+	private Node addRecursive(Node current,int value)
+	{
+		if(current==null)
+			return new Node(value);
+		if(value<current.value)
+			current.left=addRecursive(current.left, value);
+		else if(value>current.value)
+			current.right=addRecursive(current.right, value);
+		else
+			return current;
+		return current;
+	}
+	static int temp=0;
+	 static void traverseInOrder(Node node)
+	{
+		if(node!=null)
+		{
+			traverseInOrder(node.left);
+			++temp;
+			if(temp==2)
+	        System.out.print(" " + node.value);
+	        traverseInOrder(node.right);
+		}
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BinaryTree tree = new BinaryTree();
+		int[]arr= {3,2,3,6,7,8,4};
+		for(int i=0;i<arr.length;i++)
+		{
+			BinaryTree.root=tree.addRecursive(tree.root, arr[i]);
+		}
+		traverseInOrder(tree.root);
+	}
+
+}
