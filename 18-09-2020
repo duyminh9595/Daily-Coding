@@ -1,0 +1,74 @@
+You have an N by N board. Write a function that, given N, returns the number of possible arrangements of the board where N queens can be placed on 
+the board without threatening each other, i.e. 
+no two queens share the same row, column, or diagonal.
+
+Solution:
+static class BT{
+		int N;
+		void print(int[][]arr)
+		{
+			for(int i=0;i<N;i++)
+			{
+				for(int j=0;j<N;j++)
+					System.out.print(" "+arr[i][j]+" ");
+				System.out.println();
+			}
+		}
+		public BT(int x)
+		{
+			N=x;
+		}
+		boolean isSafe(int[][] arr,int row,int col)
+		{
+			int j,i;
+			for(i=0;i<col;i++)
+			{
+				if(arr[row][i]==1)
+					return false;
+			}
+			for(i=row,j=col;j>=0 && i>=0;i--,j--)
+			{
+				if(arr[i][j]==1)
+					return false;
+			}
+			for(i=row,j=col;j>=0&& i<N;j--,i++)
+			{
+				if(arr[i][j]==1)
+					return false;
+			}
+			return true;
+		}
+		boolean solveNQUtil(int[][]arr,int col)
+		{
+			if(col>=N)
+				return true;
+			for(int i=0;i<N;i++)
+			{
+				if(isSafe(arr, i, col))
+				{
+					arr[i][col]=1;
+					if(solveNQUtil(arr, col+1))
+						return true;
+					arr[i][col]=0;
+				}
+			}
+			return false;
+		}
+		 boolean solveNQ() 
+		    { 
+		        int board[][] = new int[N][N];
+		  
+		        if (solveNQUtil(board, 0) == false) { 
+		            System.out.print("Solution does not exist"); 
+		            return false; 
+		        } 
+		  
+		        print(board); 
+		        return true; 
+		    } 
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		 BT Queen = new BT(sc.nextInt()); 
+	        Queen.solveNQ(); 
+	}
