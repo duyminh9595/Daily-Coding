@@ -1,0 +1,46 @@
+Implement a stack that has the following methods:
+
+push(val), which pushes an element onto the stack
+pop(), which pops off and returns the topmost element of the stack. If there are no elements in the stack, then it should throw an error or return null.
+max(), which returns the maximum value in the stack currently. If there are no elements in the stack, then it should throw an error or return null.
+Each method should run in constant time.
+
+
+
+class BT
+	{
+		Stack<Integer>s;
+		BT(int number)
+		{
+			s=new Stack<Integer>();
+		}
+		void push(int n)
+		{
+			s.push(n);
+		}
+		void peek()
+		{
+			if(s.isEmpty()==false)
+			{
+				System.out.println(s.pop());
+				peek();
+			}
+			else
+			{
+				System.out.println("Error");
+			}
+		}
+		int maxInStack=0;
+		void getMax()
+		{
+			if(s.isEmpty()==false)
+			{
+				int n=s.pop();
+				if(n>maxInStack)
+					maxInStack=n;
+				getMax();
+			}
+		}
+		
+		
+	}
