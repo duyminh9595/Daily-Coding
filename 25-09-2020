@@ -1,0 +1,46 @@
+Given a string, find the longest palindromic contiguous substring. If there are more than one with the maximum length, return any one.
+
+For example, the longest palindromic substring of "aabcdcb" is "bcdcb". The longest palindromic substring of "bananas" is "anana".
+
+
+
+
+
+
+String s="aabcdcb";
+		int lenthOfSub=0,start=-1,end=-1;
+		for(int i=0;i<s.length();i++)
+		{
+			for(int j=i+2;j<s.length();j=j+2)
+			{
+				if(s.charAt(i)==s.charAt(j))
+				{
+					int k=j/2;
+					boolean check=true;
+					for(int a=1;a<=k;a++)
+					{
+						if(s.charAt(i+a)!=s.charAt(j-a))
+							check=false;
+					}
+					if(check==true)
+					{
+						if(lenthOfSub<(j-i+1))
+						{
+							start=i;
+							end=j;
+							lenthOfSub=(j-i+1);
+						}
+						
+					}
+				}
+				else
+					continue;
+			}
+		}
+		if(start!=-1 && end!=-1)
+		{
+			for(int i=start;i<=end;i++)
+			{
+				System.out.print(s.charAt(i));
+			}
+		}
