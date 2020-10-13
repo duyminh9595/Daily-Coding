@@ -1,0 +1,42 @@
+Given a multiset of integers, return whether it can be partitioned into two subsets whose sums are the same.
+
+For example, given the multiset {15, 5, 20, 10, 35, 15, 10}, it would return true, since we can split it up into {15, 5, 10, 15, 10} and {20, 35}, which both add up to 55.
+
+Given the multiset {15, 5, 20, 10, 35}, it would return false, since we can't split it up into two subsets that add up to the same sum.
+
+
+
+
+
+int[]arr= {15, 5, 20, 10, 35, 15, 10};
+		for(int i=0;i<arr.length-1;i++)
+		{
+			for(int j=i+1;j<arr.length;j++)
+			{
+				if(arr[i]>arr[j])
+				{
+					int temp=arr[i];
+					arr[i]=arr[j];
+					arr[j]=temp;
+				}
+			}
+		}
+		boolean check=false;
+		for(int i=arr.length-1;i>=0;i--)
+		{
+			int sum1=0,sum2=0;
+			for(int j=0;j<i;j++)
+			{
+				sum1+=arr[j];
+			}
+			for(int j=i;j<arr.length;j++)
+			{
+				sum2+=arr[j];
+			}
+			if(sum1==sum2)
+			{
+				check=true;
+				break;
+			}
+		}
+		System.out.println(check);
