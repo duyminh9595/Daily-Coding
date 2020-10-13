@@ -1,0 +1,53 @@
+Given a 2D matrix of characters and a target word, write a function that returns whether the word can be found in the matrix by going left-to-right, or up-to-down.
+
+For example, given the following matrix:
+
+[['F', 'A', 'C', 'I'],
+ ['O', 'B', 'Q', 'P'],
+ ['A', 'N', 'O', 'B'],
+ ['M', 'A', 'S', 'S']]
+and the target word 'FOAM', you should return true, since it's the leftmost column. Similarly, given the target word 'MASS', you should return true, since it's the last row.
+
+
+
+
+
+
+
+String s = "FOAM";
+		char[][] arr = { { 'F', 'A', 'C', 'I' }, { 'O', 'B', 'Q', 'P' }, { 'A', 'N', 'O', 'B' },
+				{ 'M', 'A', 'S', 'S' } };
+		boolean check=false;
+		String data;
+		for(int i=0;i<=arr.length-s.length();i++)
+		{
+			for(int j=0;j<=arr[0].length-s.length();j++)
+			{
+				if(arr[i][j]==s.charAt(0))
+				{
+					data="";
+					for(int k=j;k<=j+3;k++)
+					{
+						data+=String.valueOf(arr[i][k]);
+					}
+					if(data.equals(s))
+					{
+						check=true;
+						break;
+					}
+					data="";
+					for(int k=i;k<=i+3;k++)
+					{
+						data+=String.valueOf(arr[k][j]);
+					}
+					if(data.equals(s))
+					{
+						check=true;
+						break;
+					}
+				}
+			}
+			if(check==true)
+				break;
+		}
+		System.out.println(check);
