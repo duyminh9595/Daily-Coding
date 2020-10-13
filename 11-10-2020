@@ -1,0 +1,16 @@
+Implement integer exponentiation. That is, implement the pow(x, y) function, where x and y are integers and returns x^y.
+
+Do this faster than the naive method of repeated multiplication.
+
+For example, pow(2, 10) should return 1024.
+
+
+int outPut(int x,int y)
+	{
+		if(y%2==0)
+		{
+			return (int) (Math.pow(x, y/2)*Math.pow(x, y/2));
+		}
+		else
+			return (int) (Math.pow(x, (y-1)/2)*Math.pow(x, (y-1)/2));
+	}
