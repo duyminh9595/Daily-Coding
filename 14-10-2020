@@ -1,0 +1,60 @@
+A knight's tour is a sequence of moves by a knight on a chessboard such that all squares are visited once.
+
+Given N, write a function to return the number of knight's tours on an N by N chessboard.
+
+*Solution: let all value of array is -1, pos[0][0], check all position can be available, go to each point, if each point cannot make full value of array, then backtrack of it.
+
+
+
+
+
+
+
+int[][]arr=new int[8][8];
+	  boolean checkNext(int n,int m,int arr[][])
+	{
+		return(n>=0 && n<8 && m>=0 && m<8 && arr[n][m]==-1);
+	}
+	  void printSolution()
+	{
+		for(int i=0;i<8;i++)
+		{
+			for(int j=0;j<8;j++)
+				System.out.print(arr[i][j]+"\t");
+			System.out.println();
+		}
+	}
+	  void checkProblem()
+	{
+		int xMove[] = { 2, 1, -1, -2, -2, -1, 1, 2 };
+        int yMove[] = { 1, 2, 2, 1, -1, -2, -2, -1 };
+        if(knightMove(xMove	, yMove, arr, 1,0,0))
+        {
+        	printSolution();
+        }
+        else
+        	System.out.println("Cannot");
+	}
+	  boolean knightMove(int[]arrX,int[]arrY,int[][]arr,int moveKnight,int X,int Y)
+	{
+		int nextX,nextY;
+		if(moveKnight==64)
+			return true;
+		else
+		{
+			for(int i=0;i<8;i++)
+			{
+				nextX=X+arrX[i];
+				nextY=Y+arrY[i];
+				if(checkNext(nextX, nextY, arr))
+				{
+					arr[nextX][nextY]=moveKnight;
+					if(knightMove(arrX, arrY, arr, moveKnight+1, nextX, nextY))
+						return true;
+					else
+						arr[nextX][nextY]=-1;
+				}
+			}
+		}
+		return false;
+	}
